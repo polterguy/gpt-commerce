@@ -21,7 +21,7 @@
 validators.mandatory:x:@.arguments/*/product_id
 
 // Verifying user is authorized to access endpoint.
-auth.ticket.verify:root,admin
+auth.ticket.verify:root
 
 // Opening up our database connection.
 data.connect:[generic|gpt-commerce]

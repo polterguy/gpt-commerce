@@ -1,16 +1,16 @@
 /*
  * Endpoint for creating a Stripe payment link.
  *
- * Creates a payment link for the specified [price] and returns to caller as a hosted payment link at Stripe.
+ * Creates a payment link for the specified [price_reference] and returns to caller as a hosted payment link at Stripe.
  * The [success_url] argument is where to return the user after purchase was successful.
  */
 .arguments
-   price:string
+   price_reference:string
    success_url:string
-.description:Creates a new Stripe payment link for the specified price and quantity, and returns the link to the caller with authentication for the admin role
+.description:Creates a new Stripe payment link for the specified price_reference, and returns the link to the caller with authentication for the admin role
 
 // Sanity checking invocation.
-validators.mandatory:x:@.arguments/*/price
+validators.mandatory:x:@.arguments/*/price_reference
 validators.mandatory:x:@.arguments/*/success_url
 
 // Ensuring user it authorised to invoke endpoint.
@@ -30,7 +30,7 @@ http.post:"https://api.stripe.com/v1/payment_links"
       Authorization:x:@.token
       Content-Type:application/x-www-form-urlencoded
    payload
-      line_items[0][price]:x:@.arguments/*/price
+      line_items[0][price]:x:@.arguments/*/price_reference
       line_items[0][quantity]:int:1
       after_completion[type]:redirect
       after_completion[redirect][url]:x:@.arguments/*/success_url

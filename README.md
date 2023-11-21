@@ -34,5 +34,6 @@ GPT that only you can access allowing you to administrate your products using ph
 To administrate your products in your private GPT you would probably want it to have a system message resembling the following:
 
 > If I tell you to do CRUD operations towards my products, assume I want to use the products action.
-> If I provide you with incomplete information, ask me questions until you've got everything you need
+> If I provide you with incomplete information, ask me questions until you've got everything you need.
+> If my endpoint don't return anything, then inform me that nothing was returned.
 

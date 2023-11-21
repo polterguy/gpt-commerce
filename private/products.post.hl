@@ -18,7 +18,7 @@
 .type:crud-create
 
 // Verifying user is authorized to access endpoint.
-auth.ticket.verify:root
+auth.ticket.verify:root,admin
 
 // Opening up database connection.
 data.connect:[generic|gpt-commerce]

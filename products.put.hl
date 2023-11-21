@@ -1,0 +1,60 @@
+
+// Update endpoint updating one record in your products table in your gpt-commerce database filtering which item to update with product_id updating name, price fields with authentication and authorisation for root,admin roles
+.arguments
+
+   // product_id column value being primary key of record to update
+   product_id:long
+
+   // name column's new value
+   name:string
+
+   // price column's new value
+   price:string
+
+// Meta data description for endpoint
+.description:Update endpoint updating one record in your products table in your gpt-commerce database filtering which item to update with product_id updating name, price fields with authentication and authorisation for root,admin roles
+
+// Type of endpoint
+.type:crud-update
+
+// Sanity checking invocation, making sure primary key(s) are specified.
+validators.mandatory:x:@.arguments/*/product_id
+
+// Verifying user is authorized to access endpoint.
+auth.ticket.verify:root,admin
+
+// Opening up our database connection.
+data.connect:[generic|gpt-commerce]
+   database-type:sqlite
+
+   // Parametrising our invocation.
+   add:x:./*/data.update/*/values
+      get-nodes:x:@.arguments/*/[1,1000]
+   add:x:./*/data.update/*/where/*/and
+      get-nodes:x:@.arguments/*/[0,1]
+
+   // Invoking our update slot.
+   data.update
+      database-type:sqlite
+      table:products
+      values
+      where
+         and
+
+   // Verifying record exists.
+   if
+      eq
+         get-value:x:@data.update
+         .:int:0
+      .lambda
+         response.status.set:404
+         return
+            result:Record not found
+
+   // Returning the correct status code.
+   response.status.set:202
+
+   // Returning success to caller.
+   unwrap:x:+/*
+   return
+      affected:x:@data.update

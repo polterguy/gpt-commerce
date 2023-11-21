@@ -1,0 +1,38 @@
+
+// Delete endpoint deleting one record from your products table in your gpt-commerce database with product_id matching argument with authentication and authorisation for root,admin roles
+.arguments
+
+   // Primary key of record to delete
+   product_id:long
+
+// Meta data description for endpoint
+.description:Delete endpoint deleting one record from your products table in your gpt-commerce database with product_id matching argument with authentication and authorisation for root,admin roles
+
+// Type of endpoint
+.type:crud-delete
+
+// Verifying user is authorized to access endpoint.
+auth.ticket.verify:root,admin
+
+// Sanity checking invocation, making sure primary key(s) are specified.
+validators.mandatory:x:@.arguments/*/product_id
+
+// Opening up our database connection.
+data.connect:[generic|gpt-commerce]
+   database-type:sqlite
+
+   // Parametrising our delete invocation.
+   add:x:./*/data.delete/*/where/*/and
+      get-nodes:x:@.arguments/*
+
+   // Deleting item from database.
+   data.delete
+      database-type:sqlite
+      table:products
+      where
+         and
+
+   // Returning result of above invocation to caller.
+   unwrap:x:+/*
+   return
+      affected:x:@data.delete

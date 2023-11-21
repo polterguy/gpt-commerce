@@ -2,20 +2,11 @@
 // Counts items from your products table in your gpt-commerce database
 .arguments
 
-   // products table product_id column equality exact match filtering
-   products.product_id.eq:long
-
    // products table name column wildcard filtering with SQL like '%' comparison
    products.name.like:string
 
    // products table name column equality exact match filtering
    products.name.eq:string
-
-   // products table price column wildcard filtering with SQL like '%' comparison
-   products.price.like:string
-
-   // products table price column equality exact match filtering
-   products.price.eq:string
 
 // Meta data description for endpoint
 .description:Counts items from your products table in your gpt-commerce database

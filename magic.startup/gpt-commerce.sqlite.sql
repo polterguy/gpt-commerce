@@ -4,6 +4,7 @@
 CREATE TABLE products(
   product_id integer not null primary key autoincrement,
   name text not null,
-  price text not null
+  price_reference text not null,
+  price decimal not null
 );
 

@@ -7,7 +7,7 @@
 .arguments
    price:string
    success_url:string
-.description:Creates a new Stripe payment link for the specified price and quantity, and returns the link to the caller
+.description:Creates a new Stripe payment link for the specified price and quantity, and returns the link to the caller with authentication for the admin role
 
 // Sanity checking invocation.
 validators.mandatory:x:@.arguments/*/price

@@ -1,15 +1,18 @@
 
-// Create endpoint inserting one record into your products table in your gpt-commerce database taking name, price with authentication and authorisation for root,admin roles
+// Create endpoint inserting one record into your products table in your gpt-commerce database taking name, price with authentication and authorisation for root roles
 .arguments
 
    // name column value
    name:string
 
    // price column value
-   price:string
+   price:decimal
+
+   // Stripe price reference
+   price_reference:string
 
 // Meta data description for endpoint
-.description:Create endpoint inserting one record into your products table in your gpt-commerce database taking name, price with authentication and authorisation for root,admin roles
+.description:Create endpoint inserting one record into your products table in your gpt-commerce database taking name, price, price_reference with authentication and authorisation for root roles
 
 // Type of endpoint
 .type:crud-create

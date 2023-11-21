@@ -1,5 +1,5 @@
 
-// Update endpoint updating one record in your products table in your gpt-commerce database filtering which item to update with product_id updating name, price fields with authentication and authorisation for root,admin roles
+// Update endpoint updating one record in your products table in your gpt-commerce database filtering which item to update with product_id updating name, price fields with authentication and authorisation for root roles
 .arguments
 
    // product_id column value being primary key of record to update
@@ -9,10 +9,13 @@
    name:string
 
    // price column's new value
-   price:string
+   price:decimal
+
+   // price_reference column's new value
+   price_reference:string
 
 // Meta data description for endpoint
-.description:Update endpoint updating one record in your products table in your gpt-commerce database filtering which item to update with product_id updating name, price fields with authentication and authorisation for root,admin roles
+.description:Update endpoint updating one record in your products table in your gpt-commerce database filtering which item to update with product_id updating name, price fields with authentication and authorisation for root roles
 
 // Type of endpoint
 .type:crud-update

@@ -23,12 +23,6 @@
    // products table name column equality exact match filtering
    products.name.eq:string
 
-   // products table price column wildcard filtering with SQL like '%' comparison
-   products.price.like:string
-
-   // products table price column equality exact match filtering
-   products.price.eq:string
-
 // Meta data description for endpoint
 .description:Read endpoint with paging, sorting, filtering selecting records from your products table in your gpt-commerce database returning product_id, name, price filtering on product_id, name, price with authentication and authorisation for root,admin roles
 
@@ -68,6 +62,7 @@ data.connect:[generic|gpt-commerce]
          products.product_id
          products.name
          products.price
+         products.price_reference
       where
          and
 
